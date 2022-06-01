@@ -1,18 +1,14 @@
 const notes = require('express').Router();
 const {v4: uuidv4} = require('uuid');
-const express = require('express');
-const app = express();
-const notesArray = require('../db/db.json')
-
 const {
     readFromFile,
     readAndAppend,
     writeToFile,
 } = require('../helpers/Utils');
-const { json } = require('express');
+
 
 notes.get('/', (req, res) => {
-    readFromFile('../db/db.json').then((data) => res.json(JSON.parse(data)));
+    readFromFile('')).then((data) => res.json(JSON.parse(data)));
 })
 
 notes.get('/:id', (req, res) => {
