@@ -8,8 +8,8 @@ const {
 
 
 notes.get('/', (req, res) => {
-    readFromFile('')).then((data) => res.json(JSON.parse(data)));
-})
+    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+});
 
 notes.get('/:id', (req, res) => {
     const noteId = req.params.id;
@@ -26,10 +26,11 @@ notes.get('/:id', (req, res) => {
 notes.delete('/:id', (req, res) => {
     console.log(req.params)
     const noteId = req.params.id;
-    readFromFile('./db/bd.json')
+    readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
-        const result = notesArray.filter((note) => note.id !== noteId);
+        console.log(json)
+        const result = json.filter((note) => note.id !== noteId);
 
     writeToFile('./db/db.json', result);
     res.json(`Item ${noteId} has been deleted`);
